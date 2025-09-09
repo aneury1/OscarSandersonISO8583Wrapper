@@ -6,6 +6,7 @@ message("Project source dir: ${CMAKE_SOURCE_DIR}")
 
 set(DEMO_PROJECT ${PROJECT_NAME}_demo)
 set(BENCHMARK_PROJECT ${PROJECT_NAME}_benchmark)
+set(MAINCPP_PROJECT ${PROJECT_NAME}_maincpp)
 
 file(GLOB SRCS "src/*.cpp" "src/*.c")
 file(GLOB INCLUDES "src/*.h")
@@ -26,3 +27,10 @@ target_link_libraries(${DEMO_PROJECT} PRIVATE ${PROJECT_NAME})
 file(GLOB BENCHMARK_APP_SOURCES "demo/benchmark.c")
 add_executable(${BENCHMARK_PROJECT} ${BENCHMARK_APP_SOURCES})
 target_link_libraries(${BENCHMARK_PROJECT} PRIVATE ${PROJECT_NAME})
+
+
+# main.cpp
+add_compile_options(-fpermissive -w)
+file(GLOB MAINCPP_APP_SOURCES "demo/main.cpp")
+add_executable(${MAINCPP_PROJECT} ${MAINCPP_APP_SOURCES})
+target_link_libraries(${MAINCPP_PROJECT} PRIVATE ${PROJECT_NAME})
